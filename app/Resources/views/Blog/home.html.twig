@@ -1,0 +1,22 @@
+{% extends 'default/home_layout.html.twig' %}
+{% block title %} Home {% endblock %}
+{% block body %}
+    {% block fos_user_content_header %}
+        {{ include('default/header.html.twig') }}
+    {% endblock fos_user_content_header %}
+    <!-- First Container -->
+    <div class="container-fluid bg-1 text-center" style="color: #d87ca3">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            Welcome {{app.user.username}}
+            <div class="text-center"><a href="{{ path('blog_list') }}"><button value="Approve" class="btn btn-success approve">BLOG LIST</button></a></div>
+            {% else %}
+            <a href="{{ path('fos_user_security_login') }}"><button value="Approve" class="btn btn-success approve">LOGIN</button></a>
+            <a href="{{ path('fos_user_registration_register') }}"><button value="Approve" class="btn btn-success approve">REGISTER</button></a>
+            <a href="{{ path('blog_list') }}"><button value="Approve" class="btn btn-success approve">BLOG LIST</button></a>
+            {% endif %}    
+    </div>
+
+    {% block fos_user_content_footer %}
+        {{ include('default/footer.html.twig') }}
+    {% endblock fos_user_content_footer %}
+{% endblock %}

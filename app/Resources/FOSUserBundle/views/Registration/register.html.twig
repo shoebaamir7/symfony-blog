@@ -1,0 +1,15 @@
+{% extends 'default/home_layout.html.twig' %}
+{% block title %} Register {% endblock %}
+{% block body %}
+    {% block fos_user_content_header %}
+        {{ include('default/header.html.twig') }}
+    {% endblock fos_user_content_header %}
+    
+    {% block fos_user_content %}
+        {% include "@FOSUser/Registration/register_content.html.twig" %}
+    {% endblock fos_user_content %}
+
+    {% block fos_user_content_footer %}
+        {{ include('default/footer.html.twig') }}
+    {% endblock fos_user_content_footer %}
+{% endblock %}

@@ -1,0 +1,105 @@
+.notapproved {
+    opacity: 0.3;
+}
+.approve:hover {
+    opacity: 1;
+}
+body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+    background-color: #7daacb;
+}
+p {font-size: 16px;}
+.margin {margin-bottom: 10px;margin-left: 30%;}
+.margin-reg {margin-left: 38%;}
+.bg-1-login { 
+    background-color: #1abc9c; /* Green */
+    color: #ffffff;
+    padding-bottom: 18% !important;
+}
+.bg-2-register { 
+    background-color: #1abc9c; /* Green */
+    color: #ffffff;
+
+}
+.bg-3 { 
+    background-color: #1abc9c; /* Green */
+    color: #ffffff;
+    padding-bottom: 31% !important;
+}
+.bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+}
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+.navbar-nav  li a:hover {
+    color: #1abc9c !important;
+}
+.img-nav{
+    margin-top: -26px;
+}
+.bg-2-register li {
+    float: right;
+    list-style: none;
+    color: red;
+}
+.bg-2-register .form-group label {
+    float: left;
+}
+.blogfield li {
+    float: right;
+    list-style: none;
+    color: red;
+}
+.blogfield label {
+    float: left;
+    color: red;
+}
+.top2 {
+    margin-top: -2%;
+}
+/* Remove the jumbotron's default bottom margin */ 
+.jumbotron {
+    margin-bottom: 0;
+}
+.panel-footer, .listhead,.listcontent,.blog-heading,.blackcolor,label{
+    color: #000 !important;;
+}
+.blog-heading a{
+    color: #e7bfbf !important;
+}
+.pad10{
+    padding-top: 10px;
+}
+.padleft25 {
+    padding-left: 25%;
+}
+.listpage a:hover {
+    text-decoration: none;
+}
+.navbar {
+    background-color: #f5f6f7;
+}
+.padleft8{
+    padding-left: 8%;
+}
+.setborder{
+    border-left: 6px solid red;
+    background-color: lightgrey;
+}
+.nomarginleft{
+    margin-left: 0px;
+}

@@ -1,0 +1,30 @@
+{% extends 'default/home_layout.html.twig' %}
+{% block title %} Create Blog {% endblock %}
+{% block body %}
+    {% block fos_user_content_header %}
+        {{ include('default/header.html.twig') }}
+    {% endblock fos_user_content_header %}
+    <div class="container pad10">
+        <section>
+            <a href="{{ path('blog_list') }}"><button value="Approve" class="btn btn-success approve">BLOG LIST</button></a>
+            <h1 class="blackcolor">Create New Blog</h1><hr>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="form-group blogfield">
+                {{ form_row(form.title) }}
+            </div>
+            <div class="form-group blogfield">
+                {{ form_row(form.description) }}{{ form_row(form.brochure) }}
+            </div>
+            <div class="form-group blogfield">
+                {{ form_row(form.blogImage) }}
+            </div>
+            <div class="form-group col-lg-2" style='padding-left: 0px'>
+                {{ form_row(form.submit) }}
+            </div>
+            {{ form_end(form) }}
+        </section>
+    </div>
+    {% block fos_user_content_footer %}
+        {{ include('default/footer.html.twig') }}
+    {% endblock fos_user_content_footer %}   
+{% endblock %}

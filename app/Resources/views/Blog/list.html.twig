@@ -1,0 +1,24 @@
+{% extends 'default/home_layout.html.twig' %}
+{% block title %} List Of Blogs {% endblock %}
+{% block body %}
+    {% block fos_user_content_header %}
+        {{ include('default/header.html.twig') }}
+    {% endblock fos_user_content_header %}
+    <div class="container pad10 listpage">    
+        {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('blog_create') }}"><button value="Approve" class="btn btn-success approve">Create Blog</button></a><hr>{% endif %}
+        <h1 class="listhead">List of blogs</h1>
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="col-sm-4">
+                    <a href="/blog/show/{{ blog.id }}">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading blog-heading">{{ blog.title }}</div>
+                        <div class="panel-body"><img src="{{ asset('img/noimage.png') }}" class="img-responsive" style="width:100%" alt="Image"></div>
+                        <div class="panel-footer">{{ blog.description|slice(0, 30) ~ ' ...' }}</div>
+                    </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

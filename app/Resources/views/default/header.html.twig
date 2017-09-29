@@ -1,0 +1,28 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<!-- Navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <span><a class="navbar-brand" href="{{ path('homepage') }}"><img class='img-nav' src={{asset('img/logo.png')}}></a></span>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li>Welcome {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a></li>
+                        {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">LOGIN</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">REGISTER</a></li>
+                        {% endif %}    
+                        {% if is_granted('ROLE_ADMIN') %} <li>WELCOME ADMIN{% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>

@@ -1,0 +1,89 @@
+{% extends 'default/home_layout.html.twig' %}
+{% block title %} {{ blog.title }} {% endblock %}
+{% block body %}
+    {% block fos_user_content_header %}
+        {{ include('default/header.html.twig') }}
+    {% endblock fos_user_content_header %}
+    <div class="container pad10">
+        <a href="{{ path('blog_list') }}"><button value="Approve" class="btn btn-success approve">BLOG LIST</button></a>{% if is_granted('ROLE_ADMIN') %} <a href="{{ path('blog_create') }}"><button value="Approve" class="btn btn-success approve">Create Blog</button></a>{% endif %}<hr>
+        <div class="well">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placekitten.com/150/150">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading blog-heading">{{ blog.title }}</h4>
+                    <p class="text-right">By Admin</p>
+                    <p class="listcontent">{{ blog.description }}</p>
+                    <ul class="list-inline list-unstyled">
+                        <li><span class="blackcolor"><i class="glyphicon glyphicon-calendar blackcolor"></i> 2 days, 8 hours </span></li>
+                        <li class="blackcolor">|</li>
+                        <span class="blackcolor"><i class="glyphicon glyphicon-comment blackcolor"></i> 2 comments</span>
+                        <li class="blackcolor">|</li>
+                        <li>
+                            <span class="glyphicon glyphicon-star blackcolor"></span>
+                            <span class="glyphicon glyphicon-star blackcolor"></span>
+                            <span class="glyphicon glyphicon-star blackcolor"></span>
+                            <span class="glyphicon glyphicon-star blackcolor"></span>
+                            <span class="glyphicon glyphicon-star-empty blackcolor"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% if app.user %}
+            <div class="row">
+                <div class="col-md-8">
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                    <div class="form-group">
+                        {{ form_row(form.comment) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.submit) }}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                {% if is_granted('ROLE_ADMIN') %} 
+                    <div class="col-md-4 padleft25">
+                        <a href="{{ path('blog_update', {'id':blog.id}) }}"><button value="editblog" class="btn btn-primary approve">Edit Blog</button></a>
+                    </div>
+                {% endif %}
+            </div> 
+        {% endif %}    
+
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="row nomarginleft">
+                    <div class="col-md-8 setborder">
+                        <div class="col-md-10">
+                            {% set line = 0 %}
+                            {% if (is_granted('ROLE_ADMIN') and (comment.status == 0 or comment.status == 1)) or ( not is_granted('ROLE_ADMIN') and comment.status == 1) %}
+                                {% set line = 1 %}
+                                <p class="blackcolor"><i class="glyphicon glyphicon-user blackcolor"></i> {{ comment.user.name }} :</p>
+                                <p class="{% if (is_granted('ROLE_ADMIN') and comment.status == 0)%} notapproved {% endif %} blackcolor padleft8">{{ comment.comment }}</p>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') and comment.status == 0 %} 
+                                <a href="{{ path('comment_update', {'blogid':blog.id,'id': comment.id}) }}">
+                                    <button value="Approve" class="btn btn-success approve">Approve</button>
+                                </a>
+                            {% endif %}
+                        </div>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <div class="col-md-2">
+                            <span style="float:right;vertical-align: middle;">
+                                <a href="{{ path('comment_delete', {'blogid':blog.id,'id': comment.id}) }}" title="Delete Comment">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </span>              
+                        </div>
+                        {% endif %}            
+                    </div>
+
+                </div> <br> 
+            {% endfor %}
+        {% else %}
+            No Comments yet
+        {% endif %}
+
+    </div>
+{% endblock %}
